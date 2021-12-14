@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta content="text/html;charset=utf-8" http-equiv="Content-Type">
+<meta content="utf-8" http-equiv="encoding">
+<canvas id="gameCanvas" width="800" height="600"></canvas>
+</head>
+
+<body>
+
+<script>
+//Variáveis
+  var bolaX = 75;
+  var bolaY = 75;
+  var velocidadeBolaX = 5;
+  var velocidadeBolaY = 5;
+
+  var canvas;
+  var canvasContext;
+
+  window.onload = function(){
+    canvas = document.getElementById('gameCanvas');
+    canvasContext = canvas.getContext('2d');
+
+    setInterval(desenhaTudo, 1000/30);
+
+
+  }
+
+  function desenhaTudo(){
+    canvasContext.fillStyle = 'black';
+    canvasContext.fillRect(0, 0, canvas.width, canvas.height);
+
+
+    canvasContext.fillStyle = 'white';
+    canvasContext.beginPath();
+    canvasContext.arc(bolaX, bolaY, 10, 0, Math.PI*2, true);
+    canvasContext.fill();
+
+    movimentaTudo();
+  }
+
+  function movimentaTudo(){
+    if(bolaX > canvas.width){
+      velocidadeBolaX *= -1;
+    }
+
+    if(bolaX < 0){
+      velocidadeBolaX *= -1;
+    }
+
+    if(bolaY > canvas.height){
+      velocidadeBolaY *= -1;
+    }
+
+    if(bolaY < 0){
+      velocidadeBolaY *= -1;
+    }
+
+    bolaX += velocidadeBolaX;
+    bolaY += velocidadeBolaY;
+    console.log(bolaX);
+  }
+
+</script>
+
+</body>
+</html>
